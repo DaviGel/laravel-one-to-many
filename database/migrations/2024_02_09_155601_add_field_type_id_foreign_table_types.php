@@ -17,10 +17,10 @@ return new class extends Migration
 
             // CREAZIONE FOREIGN KEY
             // Metodo 1
-            // $table->foreignId('type_id')->constrained();
+            // $table->foreignId('type_id')->constrained()->nullOnDelete();
 
             // Metodo 2 (esteso)
-            $table->foreign('type_id')->references('id')->on('types');
+            $table->foreign('type_id')->references('id')->on('types')->nullOnDelete();
         });
     }
 
