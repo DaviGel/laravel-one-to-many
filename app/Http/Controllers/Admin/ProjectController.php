@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use App\Models\Type;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -24,7 +26,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('create');
+        $types = Type::all();
+        return view('create', compact('types'));
     }
 
     /**
@@ -35,6 +38,7 @@ class ProjectController extends Controller
         $data = $request->validated();
         $project = new Project();
         $project->fill($data);
+        $project->slug = Str::of($project->title)->slug('-');
         $project->save();
         return redirect()->route('admin.projects.index', $project)->with('message', 'Progetto creato correttamente');
     }
@@ -53,7 +57,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('edit', compact('project'));
+        $types = Type::all();
+        return view('edit', compact('project', 'types'));
     }
 
     /**
@@ -62,6 +67,7 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $data = $request->validated();
+        $project->slug = Str::of($data['title'])->slug('-');
         $project->update($data);
         return redirect()->route('admin.projects.index', $project)->with('message', 'Progetto aggiornato correttamente');
     }

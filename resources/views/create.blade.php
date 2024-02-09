@@ -26,14 +26,14 @@
                                     <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label">Slug</label>
-                                <input type="text" class="form-control @error('slug') is-invalid @enderror"
-                                    name="slug" value="{{ old('slug') }}">
-                                @error('slug')
-                                    <div class="alert alert-danger mt-1">{{ $message }}</div>
-                                @enderror
-                            </div>
+                            <select class="form-select mb-3" aria-label="Default select example" name="type_id">
+                                <option selected>Scegli la categoria</option>
+                                @foreach ($types as $type)
+                                    <option value="{{ $type->id }}" @if (old('type_id') == $type->id) selected @endif>
+                                        {{ $type->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                             <button type="submit" class="btn btn-success">Invia</button>
                         </form>
                     </div>
