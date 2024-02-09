@@ -10,6 +10,9 @@
                     <div class="card-body">
                         <h4>{{ $project->title }}</h4>
                         <p>{{ $project->description }}</p>
+                        <div class="category">
+                            Categoria: {{ $project->type?->name }}
+                        </div>
                     </div>
                 </div>
             </div>
