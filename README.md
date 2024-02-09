@@ -2,8 +2,7 @@
 
 ## Roadmap
 
--   [] Aggiungere una nuova tabella Type
--   [] Creare la migration per la tabella types
+-   [x] Creare la migration per la tabella types
 -   [] Creare il model Type
 -   [] Creare la migration di modifica per la tabella projects per aggiungere la chiave esterna
 -   [] Aggiungere ai model Type e Project i metodi per definire la relazione one to many
