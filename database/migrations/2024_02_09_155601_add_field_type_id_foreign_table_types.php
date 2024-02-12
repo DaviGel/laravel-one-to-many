@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            // CREAZIONE CAMPO
-            $table->unsignedBigInteger('type_id')->nullable()->after('id');
-
-            // CREAZIONE FOREIGN KEY
+            // CREAZIONE CAMPO E FOREIGN KEY
             // Metodo 1
             // $table->foreignId('type_id')->constrained()->nullOnDelete();
+
+            // CREAZIONE CAMPO
+            $table->unsignedBigInteger('type_id')->nullable()->after('id');
 
             // Metodo 2 (esteso)
             $table->foreign('type_id')->references('id')->on('types')->nullOnDelete();
